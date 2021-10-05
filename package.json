@@ -1,0 +1,45 @@
+{
+  "name": "diefenbach/tags",
+  "version": "0.0.1",
+  "description": "tag UI for pictures",
+  "main": ".",
+  "scripts": {
+    "image": "cd ./docker && docker image build -t php8 .\n",
+    "start": "cd ./docker && docker-compose up",
+    "down": "cd ./docker && docker-compose down",
+    "bundle": "gulp bundle:dist",
+    "bundle-dev": "gulp bundle:dev",
+    "vendor": "gulp vendor:js && gulp vendor:css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TobiasStill/diefenbach_tags.git"
+  },
+  "author": "Tobias Still",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/TobiasStill/diefenbach_tags/issues"
+  },
+  "homepage": "https://github.com/TobiasStill/diefenbach_tags#readme",
+  "dependencies": {
+    "vue": "^2.6.14",
+    "vue-custom-scrollbar": "^1.4.1",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.5",
+    "@openapitools/openapi-generator-cli": "^2.4.10",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
+    "core-js": "^3.14.0",
+    "esm": "^3.2.25",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "regenerator-runtime": "^0.13.7",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}

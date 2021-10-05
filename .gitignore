@@ -1,0 +1,4 @@
+/www/composer.lock
+/www/vendor
+/www/assets/dist
+package-lock.json
