@@ -54,7 +54,7 @@ class SlimRouter
     private $operations = [
         [
             'httpMethod' => 'GET',
-            'basePathWithoutHost' => '/v2',
+            'basePathWithoutHost' => '/api',
             'path' => '/image/{tagName}',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractImageApi',
@@ -102,7 +102,7 @@ class SlimRouter
         ],
         [
             'httpMethod' => 'GET',
-            'basePathWithoutHost' => '/v2',
+            'basePathWithoutHost' => '/api',
             'path' => '/image/{id}/next',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractImageApi',
@@ -144,7 +144,7 @@ class SlimRouter
         ],
         [
             'httpMethod' => 'GET',
-            'basePathWithoutHost' => '/v2',
+            'basePathWithoutHost' => '/api',
             'path' => '/image/{id}/previous',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractImageApi',
@@ -186,7 +186,7 @@ class SlimRouter
         ],
         [
             'httpMethod' => 'POST',
-            'basePathWithoutHost' => '/v2',
+            'basePathWithoutHost' => '/api',
             'path' => '/tag',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractTagApi',
@@ -205,7 +205,7 @@ class SlimRouter
         ],
         [
             'httpMethod' => 'GET',
-            'basePathWithoutHost' => '/v2',
+            'basePathWithoutHost' => '/api',
             'path' => '/tag/findByAuthor',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractTagApi',
@@ -247,7 +247,7 @@ class SlimRouter
         ],
         [
             'httpMethod' => 'GET',
-            'basePathWithoutHost' => '/v2',
+            'basePathWithoutHost' => '/api',
             'path' => '/tag/findByImage',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractTagApi',
@@ -289,8 +289,8 @@ class SlimRouter
         ],
         [
             'httpMethod' => 'GET',
-            'basePathWithoutHost' => '/v2',
-            'path' => '/tags/',
+            'basePathWithoutHost' => '/api',
+            'path' => '/tags',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractTagApi',
             'userClassname' => 'TagApi',
@@ -331,7 +331,7 @@ class SlimRouter
         ],
         [
             'httpMethod' => 'PUT',
-            'basePathWithoutHost' => '/v2',
+            'basePathWithoutHost' => '/api',
             'path' => '/tag',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractTagApi',
@@ -362,7 +362,7 @@ class SlimRouter
         ],
         [
             'httpMethod' => 'DELETE',
-            'basePathWithoutHost' => '/v2',
+            'basePathWithoutHost' => '/api',
             'path' => '/tag/{tagName}',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractTagApi',
@@ -387,7 +387,7 @@ class SlimRouter
         ],
         [
             'httpMethod' => 'GET',
-            'basePathWithoutHost' => '/v2',
+            'basePathWithoutHost' => '/api',
             'path' => '/tag/{tagName}',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractTagApi',

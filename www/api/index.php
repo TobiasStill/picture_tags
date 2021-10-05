@@ -22,6 +22,8 @@
  */
 
 require_once __DIR__ . '/vendor/autoload.php';
+$_ENV['SLIM_MODE'] = 'development';
+$_ENV['__ROOT_PATH__'] = __DIR__;
 
 use OpenAPIServer\SlimRouter;
 use Psr\Http\Message\ServerRequestInterface;
@@ -29,14 +31,7 @@ use Psr\Http\Message\ResponseInterface;
 use OpenAPIServer\Mock\OpenApiDataMocker;
 
 // load config file
-$config = [];
-if (is_array($prodConfig = @include(__DIR__ . '/config/prod/config.inc.php'))) {
-    $config = $prodConfig;
-} elseif (is_array($devConfig = @include(__DIR__ . '/config/dev/config.inc.php'))) {
-    $config = $devConfig;
-} else {
-    throw new InvalidArgumentException('Config file missed or broken.');
-}
+$config = @include(__DIR__ . 'config/config.php');
 
 $router = new SlimRouter($config);
 $app = $router->getSlimApp();
@@ -59,9 +54,9 @@ $app->addRoutingMiddleware();
  * for middleware added after it.
  */
 $app->addErrorMiddleware(
-    isset($config['slimSettings']['displayErrorDetails']) ? $config['slimSettings']['displayErrorDetails'] : false,
-    isset($config['slimSettings']['logErrors']) ? $config['slimSettings']['logErrors'] : true,
-    isset($config['slimSettings']['logErrorDetails']) ? $config['slimSettings']['logErrorDetails'] : true
+    $config['slimSettings']['displayErrorDetails'] ?? false,
+    $config['slimSettings']['logErrors'] ?? true,
+    $config['slimSettings']['logErrorDetails'] ?? true
 );
 
 $app->run();

@@ -6,6 +6,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpNotImplementedException;
+use SleekDB\Store;
 
 class TagApi extends AbstractTagApi
 {
@@ -19,9 +20,12 @@ class TagApi extends AbstractTagApi
      */
     public function __construct(ContainerInterface $container = null)
     {
-        $databaseDirectory = realpath('../data');
+        $config = @include('../../config/config.php');
         $this->container = $container;
-        $this->tagStore = new \SleekDB\Store("news", $databaseDirectory);
+        $this->tagStore = new Store("tags", $config['dataDirectory'], [
+            'auto_cache' => true,
+            'timeout' => false
+        ]);
         $this->queryBuilder = $this->tagStore->createQueryBuilder();
     }
 

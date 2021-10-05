@@ -1,4 +1,5 @@
 /www/composer.lock
 /www/vendor
 /www/assets/dist
+/www/images/
 package-lock.json

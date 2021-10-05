@@ -11,7 +11,7 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 host: andreasdiefenbach.com
-basePath: /v2
+basePath: /api
 tags:
   - name: tag
     description: a Tag
@@ -245,7 +245,7 @@ paths:
           description: Invalid id supplied
         404:
           description: No image found
-  /tags/:
+  /tags:
     get:
       tags:
         - tag
