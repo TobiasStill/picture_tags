@@ -1,6 +1,7 @@
 <?php
+namespace OpenAPIServer\Api;
 
-class ImageApi extends \OpenAPIServer\Api\AbstractImageApi
+class ImageApi extends AbstractImageApi
 {
 
 }

@@ -1,11 +1,13 @@
 <?php
 
+namespace OpenAPIServer\Api;
+
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpNotImplementedException;
 
-class TagApi extends \OpenAPIServer\Api\AbstractTagApi
+class TagApi extends AbstractTagApi
 {
     private $tagStore;
     private $queryBuilder;
