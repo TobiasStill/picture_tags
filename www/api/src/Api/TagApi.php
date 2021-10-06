@@ -22,7 +22,7 @@ class TagApi extends AbstractTagApi
     {
         $config = @include('../../config/config.php');
         $this->container = $container;
-        $this->tagStore = new Store("tags", $config['dataDirectory'], [
+        $this->tagStore = new Store("tags", __ROOT_PATH__.'/data', [
             'auto_cache' => true,
             'timeout' => false
         ]);

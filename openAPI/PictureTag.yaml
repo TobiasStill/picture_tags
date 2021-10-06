@@ -20,6 +20,24 @@ tags:
 schemes:
   - http
 paths:
+  /tags:
+    get:
+      tags:
+        - tag
+      summary: Returns Tags
+      operationId: getInventory
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Tag'
+        400:
+          description: Invalid Request
   /tag:
     post:
       tags:
@@ -168,6 +186,24 @@ paths:
           description: Invalid name supplied
         404:
           description: Tag not found
+  /images:
+    get:
+      tags:
+        - image
+      summary: Returns Tags
+      operationId: getImageInventory
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Image'
+        400:
+          description: Invalid Request
   /image/{tagName}:
     get:
       tags:
@@ -195,74 +231,6 @@ paths:
           description: Invalid name supplied
         404:
           description: Tag not found
-  /image/{id}/next:
-    get:
-      tags:
-        - image
-      summary: Find next image
-      description: Returns next Image
-      operationId: getNextImage
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: id
-          in: path
-          description: Id of current Image
-          required: true
-          type: string
-      responses:
-        200:
-          description: successful operation
-          schema:
-            $ref: '#/definitions/Image'
-        400:
-          description: Invalid id supplied
-        404:
-          description: No image found
-  /image/{id}/previous:
-    get:
-      tags:
-        - image
-      summary: Find previous image
-      description: Returns previous Image
-      operationId: getPreviousImage
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: id
-          in: path
-          description: Id of current Image
-          required: true
-          type: string
-      responses:
-        200:
-          description: successful operation
-          schema:
-            $ref: '#/definitions/Image'
-        400:
-          description: Invalid id supplied
-        404:
-          description: No image found
-  /tags:
-    get:
-      tags:
-        - tag
-      summary: Returns Tags
-      operationId: getInventory
-      produces:
-        - application/json
-        - application/xml
-      responses:
-        200:
-          description: successful operation
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Tag'
-        400:
-          description: Invalid Request
 definitions:
   Tag:
     type: object

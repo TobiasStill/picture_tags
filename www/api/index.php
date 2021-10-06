@@ -22,13 +22,13 @@
  */
 
 require_once __DIR__ . '/vendor/autoload.php';
-$_ENV['SLIM_MODE'] = 'development';
-$_ENV['__ROOT_PATH__'] = __DIR__;
-
 use OpenAPIServer\SlimRouter;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPIServer\Mock\OpenApiDataMocker;
+
+const __ROOT_PATH__ = __DIR__;
+$_ENV['SLIM_MODE'] = 'development';
 
 // load config file
 $config = @include(__DIR__ . 'config/config.php');

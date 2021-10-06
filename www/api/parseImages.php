@@ -2,7 +2,6 @@
 
 include './vendor/rakibtg/sleekdb/src/Store.php';
 $_ENV['SLIM_MODE'] = 'development';
-$_ENV['__ROOT_PATH__'] = __DIR__;
 
 use SleekDB\Store;
 

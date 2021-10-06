@@ -18,9 +18,7 @@ composer.phar
 /phpcs.xml
 
 # Application config may contain sensitive data
-/config/dev/*.*
-/config/prod/*.*
+/config/**/*.*
 !/config/.htaccess
 !/config/dev/example.inc.php
 !/config/prod/example.inc.php
-/images/

@@ -55,6 +55,48 @@ class SlimRouter
         [
             'httpMethod' => 'GET',
             'basePathWithoutHost' => '/api',
+            'path' => '/images',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractImageApi',
+            'userClassname' => 'ImageApi',
+            'operationId' => 'getImageInventory',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
+  "description" : "successful operation",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Image"
+        }
+      }
+    },
+    "application/xml" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Image"
+        }
+      }
+    }
+  }
+}',
+                ],
+                '400' => [
+                    'jsonSchema' => '{
+  "description" : "Invalid Request",
+  "content" : { }
+}',
+                ],
+            ],
+            'authMethods' => [
+            ],
+        ],
+        [
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '/api',
             'path' => '/image/{tagName}',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractImageApi',
@@ -93,90 +135,6 @@ class SlimRouter
                 '404' => [
                     'jsonSchema' => '{
   "description" : "Tag not found",
-  "content" : { }
-}',
-                ],
-            ],
-            'authMethods' => [
-            ],
-        ],
-        [
-            'httpMethod' => 'GET',
-            'basePathWithoutHost' => '/api',
-            'path' => '/image/{id}/next',
-            'apiPackage' => 'OpenAPIServer\Api',
-            'classname' => 'AbstractImageApi',
-            'userClassname' => 'ImageApi',
-            'operationId' => 'getNextImage',
-            'responses' => [
-                '200' => [
-                    'jsonSchema' => '{
-  "description" : "successful operation",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Image"
-      }
-    },
-    "application/xml" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Image"
-      }
-    }
-  }
-}',
-                ],
-                '400' => [
-                    'jsonSchema' => '{
-  "description" : "Invalid id supplied",
-  "content" : { }
-}',
-                ],
-                '404' => [
-                    'jsonSchema' => '{
-  "description" : "No image found",
-  "content" : { }
-}',
-                ],
-            ],
-            'authMethods' => [
-            ],
-        ],
-        [
-            'httpMethod' => 'GET',
-            'basePathWithoutHost' => '/api',
-            'path' => '/image/{id}/previous',
-            'apiPackage' => 'OpenAPIServer\Api',
-            'classname' => 'AbstractImageApi',
-            'userClassname' => 'ImageApi',
-            'operationId' => 'getPreviousImage',
-            'responses' => [
-                '200' => [
-                    'jsonSchema' => '{
-  "description" : "successful operation",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Image"
-      }
-    },
-    "application/xml" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Image"
-      }
-    }
-  }
-}',
-                ],
-                '400' => [
-                    'jsonSchema' => '{
-  "description" : "Invalid id supplied",
-  "content" : { }
-}',
-                ],
-                '404' => [
-                    'jsonSchema' => '{
-  "description" : "No image found",
   "content" : { }
 }',
                 ],

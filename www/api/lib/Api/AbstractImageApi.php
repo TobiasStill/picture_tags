@@ -55,6 +55,24 @@ abstract class AbstractImageApi
 
 
     /**
+     * GET getImageInventory
+     * Summary: Returns Tags
+     * Output-Formats: [application/json, application/xml]
+     *
+     * @param ServerRequestInterface $request  Request
+     * @param ResponseInterface      $response Response
+     * @param array|null             $args     Path arguments
+     *
+     * @return ResponseInterface
+     * @throws HttpNotImplementedException to force implementation class to override this method
+     */
+    public function getImageInventory(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    {
+        $message = "How about implementing getImageInventory as a GET method in OpenAPIServer\Api\ImageApi class?";
+        throw new HttpNotImplementedException($request, $message);
+    }
+
+    /**
      * GET getImagesByTagName
      * Summary: Find Images by TangName
      * Notes: Returns tagged Images
@@ -71,46 +89,6 @@ abstract class AbstractImageApi
     {
         $tagName = $args['tagName'];
         $message = "How about implementing getImagesByTagName as a GET method in OpenAPIServer\Api\ImageApi class?";
-        throw new HttpNotImplementedException($request, $message);
-    }
-
-    /**
-     * GET getNextImage
-     * Summary: Find next image
-     * Notes: Returns next Image
-     * Output-Formats: [application/json, application/xml]
-     *
-     * @param ServerRequestInterface $request  Request
-     * @param ResponseInterface      $response Response
-     * @param array|null             $args     Path arguments
-     *
-     * @return ResponseInterface
-     * @throws HttpNotImplementedException to force implementation class to override this method
-     */
-    public function getNextImage(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
-        $id = $args['id'];
-        $message = "How about implementing getNextImage as a GET method in OpenAPIServer\Api\ImageApi class?";
-        throw new HttpNotImplementedException($request, $message);
-    }
-
-    /**
-     * GET getPreviousImage
-     * Summary: Find previous image
-     * Notes: Returns previous Image
-     * Output-Formats: [application/json, application/xml]
-     *
-     * @param ServerRequestInterface $request  Request
-     * @param ResponseInterface      $response Response
-     * @param array|null             $args     Path arguments
-     *
-     * @return ResponseInterface
-     * @throws HttpNotImplementedException to force implementation class to override this method
-     */
-    public function getPreviousImage(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
-        $id = $args['id'];
-        $message = "How about implementing getPreviousImage as a GET method in OpenAPIServer\Api\ImageApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 }
