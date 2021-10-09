@@ -55,6 +55,27 @@ abstract class AbstractImageApi
 
 
     /**
+     * GET findImagesByTag
+     * Summary: Finds Images by tag
+     * Notes: Muliple tags can be provided with comma separated strings. Use\\ \\ tag, mytag, anothertag for testing.
+     * Output-Formats: [application/json, application/xml]
+     *
+     * @param ServerRequestInterface $request  Request
+     * @param ResponseInterface      $response Response
+     * @param array|null             $args     Path arguments
+     *
+     * @return ResponseInterface
+     * @throws HttpNotImplementedException to force implementation class to override this method
+     */
+    public function findImagesByTag(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    {
+        $queryParams = $request->getQueryParams();
+        $tags = (key_exists('tags', $queryParams)) ? $queryParams['tags'] : null;
+        $message = "How about implementing findImagesByTag as a GET method in OpenAPIServer\Api\ImageApi class?";
+        throw new HttpNotImplementedException($request, $message);
+    }
+
+    /**
      * GET getImageInventory
      * Summary: Returns Tags
      * Output-Formats: [application/json, application/xml]
@@ -69,26 +90,6 @@ abstract class AbstractImageApi
     public function getImageInventory(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $message = "How about implementing getImageInventory as a GET method in OpenAPIServer\Api\ImageApi class?";
-        throw new HttpNotImplementedException($request, $message);
-    }
-
-    /**
-     * GET getImagesByTagName
-     * Summary: Find Images by TangName
-     * Notes: Returns tagged Images
-     * Output-Formats: [application/json, application/xml]
-     *
-     * @param ServerRequestInterface $request  Request
-     * @param ResponseInterface      $response Response
-     * @param array|null             $args     Path arguments
-     *
-     * @return ResponseInterface
-     * @throws HttpNotImplementedException to force implementation class to override this method
-     */
-    public function getImagesByTagName(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
-        $tagName = $args['tagName'];
-        $message = "How about implementing getImagesByTagName as a GET method in OpenAPIServer\Api\ImageApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 }

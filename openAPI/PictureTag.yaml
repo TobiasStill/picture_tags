@@ -204,22 +204,26 @@ paths:
               $ref: '#/definitions/Image'
         400:
           description: Invalid Request
-  /image/{tagName}:
+  /image/findByTag:
     get:
       tags:
         - image
-      summary: Find Images by TangName
-      description: Returns tagged Images
-      operationId: getImagesByTagName
+      summary: Finds Images by tag
+      description: Muliple tags can be provided with comma separated strings. Use\
+        \ tag, mytag, anothertag for testing.
+      operationId: findImagesByTag
       produces:
         - application/json
         - application/xml
       parameters:
-        - name: tagName
-          in: path
-          description: Name of Tag
+        - name: tags
+          in: query
+          description: tags to filter by
           required: true
-          type: string
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
       responses:
         200:
           description: successful operation
@@ -228,9 +232,7 @@ paths:
             items:
               $ref: '#/definitions/Image'
         400:
-          description: Invalid name supplied
-        404:
-          description: Tag not found
+          description: Invalid image value
 definitions:
   Tag:
     type: object

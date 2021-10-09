@@ -55,6 +55,48 @@ class SlimRouter
         [
             'httpMethod' => 'GET',
             'basePathWithoutHost' => '/api',
+            'path' => '/image/findByTag',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractImageApi',
+            'userClassname' => 'ImageApi',
+            'operationId' => 'findImagesByTag',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
+  "description" : "successful operation",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Image"
+        }
+      }
+    },
+    "application/xml" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Image"
+        }
+      }
+    }
+  }
+}',
+                ],
+                '400' => [
+                    'jsonSchema' => '{
+  "description" : "Invalid image value",
+  "content" : { }
+}',
+                ],
+            ],
+            'authMethods' => [
+            ],
+        ],
+        [
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '/api',
             'path' => '/images',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractImageApi',
@@ -87,54 +129,6 @@ class SlimRouter
                 '400' => [
                     'jsonSchema' => '{
   "description" : "Invalid Request",
-  "content" : { }
-}',
-                ],
-            ],
-            'authMethods' => [
-            ],
-        ],
-        [
-            'httpMethod' => 'GET',
-            'basePathWithoutHost' => '/api',
-            'path' => '/image/{tagName}',
-            'apiPackage' => 'OpenAPIServer\Api',
-            'classname' => 'AbstractImageApi',
-            'userClassname' => 'ImageApi',
-            'operationId' => 'getImagesByTagName',
-            'responses' => [
-                '200' => [
-                    'jsonSchema' => '{
-  "description" : "successful operation",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/Image"
-        }
-      }
-    },
-    "application/xml" : {
-      "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/Image"
-        }
-      }
-    }
-  }
-}',
-                ],
-                '400' => [
-                    'jsonSchema' => '{
-  "description" : "Invalid name supplied",
-  "content" : { }
-}',
-                ],
-                '404' => [
-                    'jsonSchema' => '{
-  "description" : "Tag not found",
   "content" : { }
 }',
                 ],
