@@ -134,7 +134,7 @@ For instance, when abstract class located at `./lib/Api/AbstractPetApi.php` you 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AbstractImageApi* | **findImagesByTag** | **GET** /image/findByTag | Finds Images by tag
-*AbstractImageApi* | **getImageInventory** | **GET** /images | Returns Tags
+*AbstractImageApi* | **getImageInventory** | **GET** /images | Returns images
 *AbstractTagApi* | **addTag** | **POST** /tag | Add a new tag to the tagcloud
 *AbstractTagApi* | **findTagsByAuthors** | **GET** /tag/findByAuthor | Finds Tags by author
 *AbstractTagApi* | **findTagsByImage** | **GET** /tag/findByImage | Finds Tags by image
@@ -142,6 +142,7 @@ Class | Method | HTTP request | Description
 *AbstractTagApi* | **updateTag** | **PUT** /tag | Update an existing ta
 *AbstractTagApi* | **deleteTag** | **DELETE** /tag/{tagName} | Deletes a tag
 *AbstractTagApi* | **getTagByTagName** | **GET** /tag/{tagName} | Find Tag by TangName
+*AbstractTagApi* | **gettagsByImage** | **GET** /tags/{image} | Returns Tags for image
 
 
 ## Models

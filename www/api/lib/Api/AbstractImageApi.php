@@ -77,7 +77,7 @@ abstract class AbstractImageApi
 
     /**
      * GET getImageInventory
-     * Summary: Returns Tags
+     * Summary: Returns images
      * Output-Formats: [application/json, application/xml]
      *
      * @param ServerRequestInterface $request  Request
