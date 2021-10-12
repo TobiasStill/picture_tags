@@ -379,6 +379,48 @@ class SlimRouter
             'authMethods' => [
             ],
         ],
+        [
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '/api',
+            'path' => '/tags/{image}',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractTagApi',
+            'userClassname' => 'TagApi',
+            'operationId' => 'gettagsByImage',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
+  "description" : "successful operation",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Tag"
+        }
+      }
+    },
+    "application/xml" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Tag"
+        }
+      }
+    }
+  }
+}',
+                ],
+                '400' => [
+                    'jsonSchema' => '{
+  "description" : "Invalid Request",
+  "content" : { }
+}',
+                ],
+            ],
+            'authMethods' => [
+            ],
+        ],
     ];
 
     /**

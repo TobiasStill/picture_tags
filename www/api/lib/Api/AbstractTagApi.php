@@ -171,6 +171,25 @@ abstract class AbstractTagApi
     }
 
     /**
+     * GET gettagsByImage
+     * Summary: Returns Tags for image
+     * Output-Formats: [application/json, application/xml]
+     *
+     * @param ServerRequestInterface $request  Request
+     * @param ResponseInterface      $response Response
+     * @param array|null             $args     Path arguments
+     *
+     * @return ResponseInterface
+     * @throws HttpNotImplementedException to force implementation class to override this method
+     */
+    public function gettagsByImage(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    {
+        $image = $args['image'];
+        $message = "How about implementing gettagsByImage as a GET method in OpenAPIServer\Api\TagApi class?";
+        throw new HttpNotImplementedException($request, $message);
+    }
+
+    /**
      * PUT updateTag
      * Summary: Update an existing ta
      *

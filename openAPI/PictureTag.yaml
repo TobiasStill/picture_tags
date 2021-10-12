@@ -38,6 +38,30 @@ paths:
               $ref: '#/definitions/Tag'
         400:
           description: Invalid Request
+  /tags/{image}:
+    get:
+      tags:
+        - tag
+      summary: Returns Tags for image
+      operationId: gettagsByImage
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: image
+          in: path
+          description: Name of Image
+          required: true
+          type: string-
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Tag'
+        400:
+          description: Invalid Request
   /tag:
     post:
       tags:
@@ -190,7 +214,7 @@ paths:
     get:
       tags:
         - image
-      summary: Returns Tags
+      summary: Returns images
       operationId: getImageInventory
       produces:
         - application/json
@@ -267,14 +291,16 @@ definitions:
   Image:
     type: object
     required:
-      - id
+      - name
       - src
     properties:
       id:
         type: integer
         format: int32
       src:
-        type: string
+        type: array
+        items:
+          type: string
   Note:
     type: object
     required:

@@ -22,3 +22,4 @@ composer.phar
 !/config/.htaccess
 !/config/dev/example.inc.php
 !/config/prod/example.inc.php
+/data/

@@ -45,7 +45,7 @@ class Image extends BaseModel
      */
     protected const MODEL_SCHEMA = <<<'SCHEMA'
 {
-  "required" : [ "id", "src" ],
+  "required" : [ "src" ],
   "type" : "object",
   "properties" : {
     "id" : {
@@ -53,7 +53,10 @@ class Image extends BaseModel
       "format" : "int32"
     },
     "src" : {
-      "type" : "string"
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
     }
   }
 }

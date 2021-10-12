@@ -2,15 +2,19 @@
 
 namespace OpenAPIServer\Api;
 
+use Brendt\Image\Config\DefaultConfigurator;
 use OpenAPIServer\Model\Tag;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use SleekDB\Store;
 use Slim\Exception\HttpNotImplementedException;
+use Brendt\Image\ResponsiveFactory;
 
 class ImageApi extends AbstractImageApi
 {
+    private mixed $config;
+
     private static function idCompare($img1, $img2)
     {
         if ($img1->id === $img2->id) {
@@ -38,6 +42,7 @@ class ImageApi extends AbstractImageApi
             'auto_cache' => true,
             'timeout' => false
         ]);
+        $this->config = @include(__DIR__ . '../../config/config.php');
     }
 
 
@@ -104,6 +109,32 @@ class ImageApi extends AbstractImageApi
         // return intersection of image-sets
         $images = empty($sets) ? [] : array_uintersect(array_merge_recursive($sets), $sets, 'ImageApi::idCompare');
         $response->getBody()->write(json_encode($images));
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+
+    /**
+     * GET getSrcSet
+     * Summary: Get src set for image
+     * Output-Formats: [application/json, application/xml]
+     *
+     * @param ServerRequestInterface $request  Request
+     * @param ResponseInterface      $response Response
+     * @param array|null             $args     Path arguments
+     *
+     * @return ResponseInterface
+     * @throws HttpNotImplementedException to force implementation class to override this method
+     */
+    public function getSrcSet(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    {
+        $queryParams = $request->getQueryParams();
+        $name = (key_exists('name', $queryParams)) ? $queryParams['name'] : null;
+        $path = $this->config['imageDir'];
+        $factory = new ResponsiveFactory(new DefaultConfigurator([
+            'publicPath'       => './' . $path,
+            'sourcePath'       => '../../../' . $path,
+        ]));
+        $image = $factory->create($name);
+        $response->getBody()->write(json_encode($image->getSrcset()));
         return $response->withHeader('Content-Type', 'application/json');
     }
 }
