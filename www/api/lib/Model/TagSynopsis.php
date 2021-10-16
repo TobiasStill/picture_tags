@@ -25,13 +25,13 @@ namespace OpenAPIServer\Model;
 use OpenAPIServer\BaseModel;
 
 /**
- * Tag
+ * TagSynopsis
  *
  * @package OpenAPIServer\Model
  * @author  OpenAPI Generator team
  * @link    https://github.com/openapitools/openapi-generator
  */
-class Tag extends BaseModel
+class TagSynopsis extends BaseModel
 {
     /**
      * @var string Models namespace.
@@ -45,12 +45,9 @@ class Tag extends BaseModel
      */
     protected const MODEL_SCHEMA = <<<'SCHEMA'
 {
-  "required" : [ "author", "date", "name", "notes", "originalImage" ],
+  "required" : [ "author", "date", "images", "name" ],
   "type" : "object",
   "properties" : {
-    "originalImage" : {
-      "type" : "string"
-    },
     "images" : {
       "type" : "array",
       "items" : {
@@ -63,19 +60,13 @@ class Tag extends BaseModel
     "author" : {
       "type" : "string"
     },
-    "notes" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/components/schemas/Note"
-      }
-    },
     "date" : {
       "type" : "string",
       "format" : "date"
     }
   },
   "xml" : {
-    "name" : "Tag"
+    "name" : "TagSynopsis"
   }
 }
 SCHEMA;

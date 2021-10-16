@@ -242,11 +242,11 @@ class SlimRouter
         [
             'httpMethod' => 'GET',
             'basePathWithoutHost' => '/api',
-            'path' => '/tags',
+            'path' => '/tag-listing',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractTagApi',
             'userClassname' => 'TagApi',
-            'operationId' => 'getInventory',
+            'operationId' => 'getTagListing',
             'responses' => [
                 '200' => [
                     'jsonSchema' => '{
@@ -256,7 +256,7 @@ class SlimRouter
       "schema" : {
         "type" : "array",
         "items" : {
-          "$ref" : "#/components/schemas/Tag"
+          "$ref" : "#/components/schemas/TagSynopsis"
         }
       }
     },
@@ -264,7 +264,7 @@ class SlimRouter
       "schema" : {
         "type" : "array",
         "items" : {
-          "$ref" : "#/components/schemas/Tag"
+          "$ref" : "#/components/schemas/TagSynopsis"
         }
       }
     }

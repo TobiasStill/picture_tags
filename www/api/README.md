@@ -107,7 +107,7 @@ Used packages:
 
 ## API Endpoints
 
-All URIs are relative to *http://andreasdiefenbach.com/api*
+All URIs are relative to *http://picture-tag.com/api*
 
 > Important! Do not modify abstract API controllers directly! Instead extend them by implementation classes like:
 
@@ -138,7 +138,7 @@ Class | Method | HTTP request | Description
 *AbstractTagApi* | **addTag** | **POST** /tag | Add a new tag to the tagcloud
 *AbstractTagApi* | **findTagsByAuthors** | **GET** /tag/findByAuthor | Finds Tags by author
 *AbstractTagApi* | **findTagsByImage** | **GET** /tag/findByImage | Finds Tags by image
-*AbstractTagApi* | **getInventory** | **GET** /tags | Returns Tags
+*AbstractTagApi* | **getTagListing** | **GET** /tag-listing | Lists availlable Tags
 *AbstractTagApi* | **updateTag** | **PUT** /tag | Update an existing ta
 *AbstractTagApi* | **deleteTag** | **DELETE** /tag/{tagName} | Deletes a tag
 *AbstractTagApi* | **getTagByTagName** | **GET** /tag/{tagName} | Find Tag by TangName
@@ -150,5 +150,6 @@ Class | Method | HTTP request | Description
 * OpenAPIServer\Model\Image
 * OpenAPIServer\Model\Note
 * OpenAPIServer\Model\Tag
+* OpenAPIServer\Model\TagSynopsis
 
 

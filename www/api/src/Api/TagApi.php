@@ -29,6 +29,26 @@ class TagApi extends AbstractTagApi
         $this->queryBuilder = $this->tagStore->createQueryBuilder();
     }
 
+    /**
+     * GET getTagListing
+     * Summary: Lists availlable Tags
+     * Output-Formats: [application/json, application/xml]
+     *
+     * @param ServerRequestInterface $request  Request
+     * @param ResponseInterface      $response Response
+     * @param array|null             $args     Path arguments
+     *
+     * @return ResponseInterface
+     * @throws HttpNotImplementedException to force implementation class to override this method
+     */
+    public function getTagListing(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    {
+        $tags = $this->tagStore->findAll(["name" => "asc"]);
+        $listing = array_map('OpenAPIServer\Model\TagSynopsis::createFromData', $tags);
+        $response->getBody()->write(json_encode($listing));
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+
 
     /**
      * POST addTag
@@ -120,25 +140,6 @@ class TagApi extends AbstractTagApi
     }
 
     /**
-     * GET getInventory
-     * Summary: Returns Tags
-     * Output-Formats: [application/json, application/xml]
-     *
-     * @param ServerRequestInterface $request Request
-     * @param ResponseInterface $response Response
-     * @param array|null $args Path arguments
-     *
-     * @return ResponseInterface
-     * @throws HttpNotImplementedException to force implementation class to override this method
-     */
-    public function getInventory(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
-        $tags = $this->tagStore->findAll(["name" => "asc"]);
-        $response->getBody()->write(json_encode($tags));
-        return $response->withHeader('Content-Type', 'application/json');
-    }
-
-    /**
      * GET getTagByTagName
      * Summary: Find Tag by TangName
      * Notes: Returns a single Tag
@@ -177,4 +178,5 @@ class TagApi extends AbstractTagApi
         $response->getBody()->write(json_encode($tag));
         return $response->withHeader('Content-Type', 'application/json');
     }
+
 }

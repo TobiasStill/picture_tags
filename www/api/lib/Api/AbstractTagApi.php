@@ -133,24 +133,6 @@ abstract class AbstractTagApi
     }
 
     /**
-     * GET getInventory
-     * Summary: Returns Tags
-     * Output-Formats: [application/json, application/xml]
-     *
-     * @param ServerRequestInterface $request  Request
-     * @param ResponseInterface      $response Response
-     * @param array|null             $args     Path arguments
-     *
-     * @return ResponseInterface
-     * @throws HttpNotImplementedException to force implementation class to override this method
-     */
-    public function getInventory(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
-        $message = "How about implementing getInventory as a GET method in OpenAPIServer\Api\TagApi class?";
-        throw new HttpNotImplementedException($request, $message);
-    }
-
-    /**
      * GET getTagByTagName
      * Summary: Find Tag by TangName
      * Notes: Returns a single Tag
@@ -167,6 +149,24 @@ abstract class AbstractTagApi
     {
         $tagName = $args['tagName'];
         $message = "How about implementing getTagByTagName as a GET method in OpenAPIServer\Api\TagApi class?";
+        throw new HttpNotImplementedException($request, $message);
+    }
+
+    /**
+     * GET getTagListing
+     * Summary: Lists availlable Tags
+     * Output-Formats: [application/json, application/xml]
+     *
+     * @param ServerRequestInterface $request  Request
+     * @param ResponseInterface      $response Response
+     * @param array|null             $args     Path arguments
+     *
+     * @return ResponseInterface
+     * @throws HttpNotImplementedException to force implementation class to override this method
+     */
+    public function getTagListing(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    {
+        $message = "How about implementing getTagListing as a GET method in OpenAPIServer\Api\TagApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
