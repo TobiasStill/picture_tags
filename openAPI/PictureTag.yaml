@@ -10,7 +10,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-host: andreasdiefenbach.com
+host: picture-tag.com
 basePath: /api
 tags:
   - name: tag
@@ -20,12 +20,12 @@ tags:
 schemes:
   - http
 paths:
-  /tags:
+  /tag-listing:
     get:
       tags:
         - tag
-      summary: Returns Tags
-      operationId: getInventory
+      summary: Lists availlable Tags
+      operationId: getTagListing
       produces:
         - application/json
         - application/xml
@@ -35,7 +35,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Tag'
+              $ref: '#/definitions/TagSynopsis'
         400:
           description: Invalid Request
   /tags/{image}:
@@ -267,14 +267,12 @@ definitions:
       - date
       - notes
     properties:
-      originalImageId:
-        type: integer
-        format: int32
-      imageIds:
+      originalImage:
+        type: string
+      images:
         type: array
         items:
-          type: integer
-          format: int32
+          type: string
       name:
         type: string
       author:
@@ -288,6 +286,27 @@ definitions:
         format: date
     xml:
       name: Tag
+  TagSynopsis:
+    type: object
+    required:
+      - name
+      - images
+      - author
+      - date
+    properties:
+      images:
+        type: array
+        items:
+          type: string
+      name:
+        type: string
+      author:
+        type: string
+      date:
+        type: string
+        format: date
+    xml:
+      name: TagSynopsis
   Image:
     type: object
     required:
