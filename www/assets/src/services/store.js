@@ -13,7 +13,7 @@ export const store = new Vuex.Store({
             state.currentTags = tags;
         },
         tag: (state, tag) => {
-            const index = state.tags.findIndex(p => p._id === tag._id);
+            const index = state.tags.findIndex(t => t.name === tag.name);
             if (index > -1) {
                 state.currentTags[index] = tag;
                 // array needs to be recreated otherwise state won't notify changes
@@ -24,18 +24,24 @@ export const store = new Vuex.Store({
         },
         images: (state, images) => {
             state.images = images;
-            state.currentImage = images[0];
+            state.currentImage = images[0].name;
         },
-        currentImage: (state, image) => {
-             state.currentImage = image;
+        currentImage: (state, key) => {
+             state.currentImage = key;
+        },
+        currentTags: (state, keys) => {
+            state.currentTags = keys;
         }
     },
     getters: {
-        findTag: (state) => (key) => {
-            return state.tags.find(p => p.id === key);
+        findTag: (state) => (id) => {
+            return state.tags.find(p => p._id === id);
         },
-        findTagsOfImage: (state) => (key) => {
-            return state.tags.filter(t => t.images.indexOf(key)>=0);
+        findTagsOfImage: (state) => (name) => {
+            return state.tags.filter(t => t.images.indexOf(name)>=0);
+        },
+        findImage: (state) => (name) => {
+            return state.images.find(p => p.name === name);
         },
         nextImage: (state) => () => {
             if(! state.currentImage) {
@@ -58,11 +64,12 @@ export const store = new Vuex.Store({
         },
     },
     actions: {
-        loadCurrentImageAndTags: ({state, commit}) => {
-            return api.fetchImages()
-                .then((images) => {
-                    commit('images', images);
-                });
+        setCurrentImageAndTags: ({state, commit, getters}, name) => {
+            const image = getters.findImage(name);
+            const tags = getters.findTagsOfImage(name);
+            commit('currentImage', image);
+            commit('currentTags', tags);
+
         },
         loadImages: ({state, commit}) => {
             return api.fetchImages()
