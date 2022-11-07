@@ -16,7 +16,8 @@
     <template>
         <header ></header>
         <enter-name v-if="!author"></enter-name>
-        <images v-if="author" ></images>
+        <images v-if="author && showImages" ></images>
+        <tags v-if="author && showTags" ></tags>
         <footer ></footer>
     </template>
 </div>

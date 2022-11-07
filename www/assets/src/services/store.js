@@ -3,59 +3,49 @@ import Vuex from "../vendor/vuex.js"
 
 export const store = new Vuex.Store({
     state: {
-        currentTags: [],
         images: [],
-        currentImage: null,
-        author: ''
+        author: '',
+        tagListing: []
     },
     mutations: {
-        tags: (state, tags) => {
-            state.currentTags = tags;
-        },
-        tag: (state, tag) => {
-            const index = state.tags.findIndex(t => t.name === tag.name);
-            if (index > -1) {
-                state.currentTags[index] = tag;
-                // array needs to be recreated otherwise state won't notify changes
-                state.currentTags = [...state.currentTags];
-            } else {
-                throw Error('Tag does not exist');
-            }
+        author: (state, author) => {
+             state.author = author;
         },
         images: (state, images) => {
             state.images = images;
-            state.currentImage = images[0].name;
         },
-        currentImage: (state, key) => {
-             state.currentImage = key;
+        tagListing: (state, listing) => {
+            state.tagListing = listing;
         },
-        currentTags: (state, keys) => {
-            state.currentTags = keys;
+        tag: (state, tagData) => {
+            const index = state.tagListing.findIndex(t => t.name === tagData.name);
+            if(index >= 0) {
+                const {images} = tagData;
+                const previous = state.tagListing[index];
+                state.tagListing[index] = {...previous, images}
+            }
         }
     },
     getters: {
-        findTag: (state) => (id) => {
-            return state.tags.find(p => p._id === id);
-        },
-        findTagsOfImage: (state) => (name) => {
-            return state.tags.filter(t => t.images.indexOf(name)>=0);
+        getImageTagListing: (state) => (name) => {
+            return state.tagListing.filter(t => t.images.indexOf(name)>=0);
         },
         findImage: (state) => (name) => {
             return state.images.find(p => p.name === name);
         },
-        nextImage: (state) => () => {
-            if(! state.currentImage) {
+        nextImage: (state) => (currentImage) => {
+            if(! currentImage) {
                 return state.images[0];
             }
-            let i = state.images.indexOf(state.currentImage);
+            let i = state.images.indexOf(currentImage);
             i = (i + 1) % state.images.length;
             return state.images[i];
         },
-        previousImage: (state) => () => {
-            if(! state.currentImage) {
+        previousImage: (state) => (currentImage) => {
+            if(! currentImage) {
                 return state.images[0];
             }
-            let i = state.images.indexOf(state.currentImage);
+            let i = state.images.indexOf(currentImage);
             i = (i - 1) % state.images.length;
             if(i < 0) {
                 i = state.length -i;
@@ -64,23 +54,16 @@ export const store = new Vuex.Store({
         },
     },
     actions: {
-        setCurrentImageAndTags: ({state, commit, getters}, name) => {
-            const image = getters.findImage(name);
-            const tags = getters.findTagsOfImage(name);
-            commit('currentImage', image);
-            commit('currentTags', tags);
-
-        },
         loadImages: ({state, commit}) => {
             return api.fetchImages()
                 .then((images) => {
                     commit('images', images);
                 });
         },
-        loadTags: ({commit}) => {
-            return api.fetchTags()
+        loadTagListing: ({commit}) => {
+            return api.fetchTagListing()
                 .then((tags) => {
-                    commit('tags', tags);
+                    commit('tagListing', tags);
                 });
         },
         putTag: ({commit}, tagData) => {
@@ -121,14 +104,6 @@ export const store = new Vuex.Store({
                 .then((tag) => {
                     commit('tag', tag);
                 });
-        },
-        nextImage: ({commit, getters}) => {
-            const next = getters.nextImage();
-            commit('currentImage', next);
-        },
-        previousImage: ({commit, getters}) => {
-            const previous = getters.previousImage();
-            commit('currentImage', previous);
         },
     }
 });

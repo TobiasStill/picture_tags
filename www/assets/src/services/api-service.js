@@ -27,8 +27,8 @@ const putJson = (key, body) => {
   }).then(response => response.json());
 };
 
-const fetchTags = () => {
-  return fetchJson('api/tags');
+const fetchTagListing = () => {
+  return fetchJson('api/tag-listing');
 };
 const fetchTag = (key) => {
   return fetchJson('api/tag/' + key);
@@ -51,4 +51,4 @@ const findImagesByTags = (tags) => {
 };
 
 
-export const api = {fetchTag, fetchTags, postTag, putTag, fetchImage, fetchImages, findImagesByTags};
+export const api = {fetchTag, fetchTagListing, postTag, putTag, fetchImage, fetchImages, findImagesByTags};

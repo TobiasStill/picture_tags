@@ -9,7 +9,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
 import concat from 'gulp-concat';
 
-const appBundle = browserify('www/assets/ar/src/app.js', {debug: true})
+const appBundle = browserify('www/assets/src/app.js', {debug: true})
     .transform(babelify)
     .bundle()
     .pipe(source('bundle.js'))
@@ -21,7 +21,7 @@ gulp.task('bundle:dist', () => {
         // Add transformation tasks to the pipeline here.
         .pipe(uglify())
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('www/assets/ar/dist/'))
+        .pipe(gulp.dest('www/assets/dist/'))
 });
 
 gulp.task('bundle:dev', () => {
@@ -31,14 +31,14 @@ gulp.task('bundle:dev', () => {
         .pipe(gulp.dest('www/assets'))
 });
 
-const vendors = [];
+const vendors = ['vue', 'vuex'];
 
 gulp.task('vendor:js', () => {
     return gulp.src(vendors.map(v => 'node_modules/' + v))
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(concat('vendor.js'))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('www/assets/ar/dist'))
+        .pipe(gulp.dest('www/assets/dist'))
         ;
 });
 
@@ -46,7 +46,7 @@ const vendorCss = [];
 
 gulp.task('vendor:css', () => {
     return gulp.src(vendorCss.map(v => 'node_modules/' + v))
-        .pipe(gulp.dest('www/assets/ar/dist'))
+        .pipe(gulp.dest('www/assets/dist'))
         ;
 });
 
