@@ -46,9 +46,7 @@
         var app = document.getElementById('app');
         unsupported.remove();
         app.setAttribute('style', 'display: flex;');
-        addScript('assets/dist/vendor.js', function(){
-            addScript('assets/dist/bundle.js');
-        });
+        addScript('assets/dist/bundle.js');
     } else {
         console.warn('The engine doesn\'t support ES6 features');
     }

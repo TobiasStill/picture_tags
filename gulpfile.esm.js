@@ -10,7 +10,7 @@ import uglify from 'gulp-uglify';
 import concat from 'gulp-concat';
 
 const appBundle = browserify('www/assets/src/app.js', {debug: true})
-    .transform(babelify)
+    .transform(babelify.configure({presets:['@babel/preset-env']}))
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(buffer());
@@ -37,8 +37,8 @@ gulp.task('vendor:js', () => {
     return gulp.src(vendors.map(v => 'node_modules/' + v))
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(concat('vendor.js'))
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('www/assets/dist'))
+        //.pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('www/assets/dist/'))
         ;
 });
 
