@@ -1,0 +1,6 @@
+/composer.lock
+/vendor
+/assets/dist
+/images/
+/thumbs/
+/api/data/

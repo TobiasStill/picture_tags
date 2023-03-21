@@ -1,7 +1,1 @@
-/www/composer.lock
-/www/vendor
-/www/assets/dist
-/www/images/
-/www/thumbs/
-/www/api/data/
 package-lock.json
