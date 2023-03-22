@@ -12,8 +12,8 @@ class SelectionApi extends AbstractSelectionApi
     public function __construct(ContainerInterface $container = null)
     {
         parent::__construct($container);
-        $this->config = @include(__DIR__ . '../../config/config.php');
-        $dataDir = __DIR__ . '/' . $this->config['database']['dir'];
+        $this->config = @include(__DIR__ . '/../../config/config.php');
+        $dataDir = __DIR__ . '/../../' . $this->config['database']['dir'];
         $this->store = new Store("selection", $dataDir, [
             'auto_cache' => true,
             'timeout' => false

@@ -55,7 +55,7 @@ abstract class AbstractSelectionApi
 
 
     /**
-     * POST addTagSelection
+     * POST addImageSelection
      * Summary: Add a new tag-selection to the tagcloud
      *
      * @param ServerRequestInterface $request  Request
@@ -68,12 +68,12 @@ abstract class AbstractSelectionApi
     public function addImageSelection(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $body = $request->getParsedBody();
-        $message = "How about implementing addTagSelection as a POST method in OpenAPIServer\Api\SelectionApi class?";
+        $message = "How about implementing addImageSelection as a POST method in OpenAPIServer\Api\SelectionApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
     /**
-     * DELETE deleteTagSelection
+     * DELETE deleteImageSelection
      * Summary: Deletes a tag-selection
      *
      * @param ServerRequestInterface $request  Request
@@ -86,12 +86,12 @@ abstract class AbstractSelectionApi
     public function deleteImageSelection(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $id = $args['id'];
-        $message = "How about implementing deleteTagSelection as a DELETE method in OpenAPIServer\Api\SelectionApi class?";
+        $message = "How about implementing deleteImageSelection as a DELETE method in OpenAPIServer\Api\SelectionApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
     /**
-     * GET getTagSelectionByTagName
+     * GET getImageSelectionById
      * Summary: get ImageSelection by name
      * Notes: Returns a single TagSelection
      * Output-Formats: [application/json, application/xml]
@@ -106,12 +106,12 @@ abstract class AbstractSelectionApi
     public function getImageSelectionById(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $id = $args['id'];
-        $message = "How about implementing getTagSelectionByTagName as a GET method in OpenAPIServer\Api\SelectionApi class?";
+        $message = "How about implementing getImageSelectionById as a GET method in OpenAPIServer\Api\SelectionApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
     /**
-     * PUT updateTagSelection
+     * PUT updateImageSelection
      * Summary: Update an existing tag-selection
      *
      * @param ServerRequestInterface $request  Request
@@ -124,7 +124,7 @@ abstract class AbstractSelectionApi
     public function updateImageSelection(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $body = $request->getParsedBody();
-        $message = "How about implementing updateTagSelection as a PUT method in OpenAPIServer\Api\SelectionApi class?";
+        $message = "How about implementing updateImageSelection as a PUT method in OpenAPIServer\Api\SelectionApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 }

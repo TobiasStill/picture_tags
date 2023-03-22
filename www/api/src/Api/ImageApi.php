@@ -34,8 +34,9 @@ class ImageApi extends AbstractImageApi
     public function __construct(ContainerInterface $container = null)
     {
         $this->container = $container;
-        $this->config = @include(__DIR__ . '../../config/config.php');
-        $dataDir = __DIR__ . '/' . $this->config['database']['dir'];
+        $this->config = @include(__DIR__ . '/../../config/config.php');
+
+        $dataDir = __DIR__ . '/../../' . $this->config['database']['dir'];
         $this->imageStore = new Store("images", $dataDir, [
             'auto_cache' => true,
             'timeout' => false
@@ -61,7 +62,7 @@ class ImageApi extends AbstractImageApi
      */
     public function getImageInventory(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
-        $images = $this->imageStore->findAll(["id" => "asc"]);
+        $images = $this->imageStore->findAll(["name" => "asc"]);
         $response->getBody()->write(json_encode($images));
         return $response->withHeader('Content-Type', 'application/json');
     }
@@ -75,14 +76,11 @@ class ImageApi extends AbstractImageApi
      *
      * @return array
      */
-    private function fetchImagesByTagName($tagName)
+    private function getImagesByTagName($tagName)
     {
-        $tag = $this->tagStore->findOneBy(["name", "=", $tagName])[0];
-        $images = [];
-        foreach ($tag->images as $id) {
-            $image = $this->imageStore->findOneBy(["id", "=", $id])[0];
-            $images[] = $image;
-        }
+        $images = $this->imageStore->findBy( [function($image) use ($tagName) {
+            return (in_array($tagName, $image['tags']));
+        }]);
         return $images;
     }
 
@@ -105,7 +103,7 @@ class ImageApi extends AbstractImageApi
         $tags = (key_exists('tags', $queryParams)) ? $queryParams['tags'] : null;
         $sets = [];
         foreach ($tags as $tag) {
-            $sets[] = $this->fetchImagesByTagName($tag);
+            $sets[] = $this->getImagesByTagName($tag);
         }
         // return intersection of image-sets
         $images = empty($sets) ? [] : array_uintersect(array_merge_recursive($sets), $sets, 'ImageApi::idCompare');
@@ -128,7 +126,7 @@ class ImageApi extends AbstractImageApi
     public function getSrcSet(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $queryParams = $request->getQueryParams();
-        $name = (key_exists('name', $queryParams)) ? $queryParams['name'] : null;
+        $name = $args['name'];
         $path = $this->config['imageDir'];
         $factory = new ResponsiveFactory(new DefaultConfigurator([
             'publicPath'       => './' . $path,

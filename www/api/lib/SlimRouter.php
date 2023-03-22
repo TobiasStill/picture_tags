@@ -137,13 +137,55 @@ class SlimRouter
             ],
         ],
         [
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '/api',
+            'path' => '/image/srcSet/{name}',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractImageApi',
+            'userClassname' => 'ImageApi',
+            'operationId' => 'getSrcSet',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
+  "description" : "successful operation",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Image"
+        }
+      }
+    },
+    "application/xml" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Image"
+        }
+      }
+    }
+  }
+}',
+                ],
+                '400' => [
+                    'jsonSchema' => '{
+  "description" : "Invalid image value",
+  "content" : { }
+}',
+                ],
+            ],
+            'authMethods' => [
+            ],
+        ],
+        [
             'httpMethod' => 'POST',
             'basePathWithoutHost' => '/api',
             'path' => '/selection',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractSelectionApi',
             'userClassname' => 'SelectionApi',
-            'operationId' => 'addTagSelection',
+            'operationId' => 'addImageSelection',
             'responses' => [
                 '405' => [
                     'jsonSchema' => '{
@@ -162,7 +204,7 @@ class SlimRouter
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractSelectionApi',
             'userClassname' => 'SelectionApi',
-            'operationId' => 'updateTagSelection',
+            'operationId' => 'updateImageSelection',
             'responses' => [
                 '400' => [
                     'jsonSchema' => '{
@@ -193,7 +235,7 @@ class SlimRouter
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractSelectionApi',
             'userClassname' => 'SelectionApi',
-            'operationId' => 'deleteTagSelection',
+            'operationId' => 'deleteImageSelection',
             'responses' => [
                 '400' => [
                     'jsonSchema' => '{
@@ -218,7 +260,7 @@ class SlimRouter
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractSelectionApi',
             'userClassname' => 'SelectionApi',
-            'operationId' => 'getTagSelectionByTagName',
+            'operationId' => 'getImageSelectionById',
             'responses' => [
                 '200' => [
                     'jsonSchema' => '{

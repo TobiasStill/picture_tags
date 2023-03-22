@@ -64,10 +64,7 @@ class Image extends BaseModel
       }
     },
     "src" : {
-      "type" : "array",
-      "items" : {
-        "type" : "string"
-      }
+      "type" : "string"
     }
   }
 }

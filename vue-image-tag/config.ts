@@ -1,4 +1,4 @@
-const API_HOST = 'localhost:8080';
+const API_HOST = 'localhost:443';
 
 export default {
     API_HOST

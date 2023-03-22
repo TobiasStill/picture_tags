@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: |
-    This is a sample tag-cloud server for images.
+    This is a sample Tagcloud server for images.
   version: 1.0.0
   title: PictureTag
   termsOfService: http://swagger.io/terms/
@@ -292,6 +292,31 @@ paths:
               $ref: '#/definitions/Image'
         400:
           description: Invalid image value
+  /image/srcSet/{name}:
+    get:
+      tags:
+        - image
+      summary: Finds Images by tag
+      description: Muliple tags can be provided with comma separated strings.
+      operationId: getSrcSet
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: name
+          in: path
+          description: tags to filter by
+          required: true
+          type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Image'
+        400:
+          description: Invalid image value
 definitions:
   Tag:
     type: object
@@ -353,6 +378,7 @@ definitions:
     required:
       - name
       - src
+      - tags
     properties:
       name:
         type: string
@@ -365,9 +391,7 @@ definitions:
         items:
           type: string
       src:
-        type: array
-        items:
-          type: string
+        type: string
   Note:
     type: object
     required:

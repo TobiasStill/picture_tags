@@ -92,4 +92,24 @@ abstract class AbstractImageApi
         $message = "How about implementing getImageInventory as a GET method in OpenAPIServer\Api\ImageApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
+
+    /**
+     * GET getSrcSet
+     * Summary: Finds Images by tag
+     * Notes: Muliple tags can be provided with comma separated strings.
+     * Output-Formats: [application/json, application/xml]
+     *
+     * @param ServerRequestInterface $request  Request
+     * @param ResponseInterface      $response Response
+     * @param array|null             $args     Path arguments
+     *
+     * @return ResponseInterface
+     * @throws HttpNotImplementedException to force implementation class to override this method
+     */
+    public function getSrcSet(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    {
+        $name = $args['name'];
+        $message = "How about implementing getSrcSet as a GET method in OpenAPIServer\Api\ImageApi class?";
+        throw new HttpNotImplementedException($request, $message);
+    }
 }

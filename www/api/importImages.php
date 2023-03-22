@@ -19,11 +19,6 @@ class Parser
     public function __construct()
     {
         $this->imageStore = Parser::createStore();
-        if ($this->imageStore->count()) {
-            $deleted = $this->imageStore->deleteStore();
-            ?>PARSER: deleted store</br><?php
-            $this->imageStore = Parser::createStore();
-        }
     }
 
     public function parse()
@@ -31,8 +26,11 @@ class Parser
         $directory = '../images';
         $files = array_diff(scandir($directory), array('..', '.'));
         foreach ($files as $key => $file) {
-            $insert = $this->imageStore->insert(['id' => $file, 'src' => '/images/' . $file]);
-            ?>PARSER: inserted file <?= json_encode($insert) ?></br><?php
+            $exists = $this->imageStore->findOneBy(["name", "=", $file]) != null;
+            if(!$exists) {
+                $insert = $this->imageStore->insert(['name' => $file, 'src' => '/images/' . $file, 'tags' => []]);
+                ?>PARSER: inserted file <?= json_encode($insert) ?></br><?php
+            }
         }
     }
 }

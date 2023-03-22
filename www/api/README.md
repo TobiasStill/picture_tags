@@ -135,10 +135,11 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AbstractImageApi* | **findImagesByTag** | **GET** /image/findByTag | Finds Images by tag
 *AbstractImageApi* | **getImageInventory** | **GET** /images | Returns images
-*AbstractSelectionApi* | **addTagSelection** | **POST** /selection | Add a new tag-selection to the tagcloud
-*AbstractSelectionApi* | **updateTagSelection** | **PUT** /selection | Update an existing tag-selection
-*AbstractSelectionApi* | **deleteTagSelection** | **DELETE** /selection/{id} | Deletes a tag-selection
-*AbstractSelectionApi* | **getTagSelectionByTagName** | **GET** /selection/{id} | get ImageSelection by name
+*AbstractImageApi* | **getSrcSet** | **GET** /image/srcSet/{name} | Finds Images by tag
+*AbstractSelectionApi* | **addImageSelection** | **POST** /selection | Add a new tag-selection to the tagcloud
+*AbstractSelectionApi* | **updateImageSelection** | **PUT** /selection | Update an existing tag-selection
+*AbstractSelectionApi* | **deleteImageSelection** | **DELETE** /selection/{id} | Deletes a tag-selection
+*AbstractSelectionApi* | **getImageSelectionById** | **GET** /selection/{id} | get ImageSelection by name
 *AbstractTagApi* | **addTag** | **POST** /tag | Add a new tag to the tagcloud
 *AbstractTagApi* | **getTagListing** | **GET** /tag-list | Lists availlable Tags
 *AbstractTagApi* | **updateTag** | **PUT** /tag | Update an existing tag
