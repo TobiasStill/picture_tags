@@ -1,0 +1,6 @@
+{
+    "require": {
+        "imagecow/imagecow": "^2.4",
+        "rakibtg/sleekdb": "^2.15"
+    }
+}
