@@ -2,6 +2,8 @@
 import { RouterView } from 'vue-router'
 import PtHeader from '@/components/PtHeader.vue';
 import PtFooter from '@/components/PtFooter.vue';
+import {useImageStore} from '@/stores/imageStore';
+useImageStore().fetchImages();
 </script>
 
 <template>

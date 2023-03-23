@@ -1,11 +1,11 @@
 {
-  "name": "picture-tags",
+  "name": "image-tag",
   "version": "0.0.1",
-  "description": "tag UI for pictures",
+  "description": "tag cloud for pictures",
   "main": ".",
   "scripts": {
     "image": "cd ./docker && docker image build -t php8 .\n",
-    "start": "cd ./docker && docker-compose up",
+    "start": "cd ./docker && docker-compose up --remove-orphans ",
     "down": "cd ./docker && docker-compose down",
     "openapi": "openapi-generator-cli generate -g php-slim4 -i ./openAPI/ImageTag.yaml -o www/api"
   },

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * PictureTag
- * PHP version 7.2
+ * ImageTag
+ * PHP version 8
  *
  * @package OpenAPIServer
  * @author  OpenAPI Generator team
