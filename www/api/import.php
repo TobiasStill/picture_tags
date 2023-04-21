@@ -51,8 +51,8 @@ class ImageImport
             'sourcePath' => $_SERVER['DOCUMENT_ROOT'] . $this->config['imageDir'],
         ]));
         foreach ($images as $key => $image){
-            $update = !key_exists('srcSet', $image);
-            //$update = true;
+            //$update = !key_exists('srcSet', $image);
+            $update = true;
             if($update){
                 $responsiveImage = $factory->create($image['name']);
                 $image['src'] = $this->config['thumbUrlPath'].$responsiveImage->src();
