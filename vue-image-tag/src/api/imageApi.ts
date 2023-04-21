@@ -6,6 +6,7 @@ import {ApiOptions} from '@/api/ApiOptions';
 export interface Image {
     name: string,
     src: string,
+    srcSet: string,
     caption?: string,
     description?: string,
     tags: Array<string>

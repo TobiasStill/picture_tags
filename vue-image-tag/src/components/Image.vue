@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <figure>
     <img
-        srcset=""
+        :srcset="image.srcSet"
         sizes="(max-width: 600px) 480px,
          800px"
         :src="image.src"
